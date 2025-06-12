@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package cn.beforedark.userservice.demos.web;
+package cn.beforedark.loggingservice.demos.web;
 
 /**
  * @author <a href="mailto:chenxilzx1@gmail.com">theonefx</a>
