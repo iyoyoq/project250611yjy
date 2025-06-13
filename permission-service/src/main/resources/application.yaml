@@ -1,0 +1,23 @@
+# 应用服务 WEB 访问端口
+server:
+  port: 46001
+
+
+spring:
+  application:
+    name: permission-service
+  datasource:
+    url: jdbc:mysql://localhost:45002/project050611yjy_permission?useSSL=false&serverTimezone=UTC
+    username: root
+    password: local1234
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  cloud:
+    nacos:
+      server-addr: localhost:8848 # nacos地址
+
+
+mybatis:
+  #指定Mybatis的Mapper文件
+  mapper-locations:  classpath:mappers/*.xml
+
+
