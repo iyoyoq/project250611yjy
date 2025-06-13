@@ -5,7 +5,8 @@
 <mapper namespace="cn.beforedark.permissionservice.mapper.PermissionMapper">
 
 
-
-
-
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id">
+        insert into user_roles(user_id, role_id)
+        values (#{userId}, #{roleId})
+    </insert>
 </mapper>
