@@ -1,9 +1,9 @@
 package cn.beforedark.userservice.controller;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import cn.beforedark.userservice.entity.dto.UserRegisterDto;
+import cn.beforedark.userservice.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @Description: 用户接口
@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping
 public class UserController {
+    @Autowired
+    private UserService userService;
 
     @GetMapping("/test")
     public String test() {
@@ -22,8 +24,9 @@ public class UserController {
 
 
     @PostMapping("/user/register")
-    public String userRegister() {
-        return "保存用户成功";
+    public Boolean userRegister(@RequestBody UserRegisterDto dto) {
+        boolean result = userService.register(dto);
+        return result;
     }
 
 

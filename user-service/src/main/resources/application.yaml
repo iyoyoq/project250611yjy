@@ -2,19 +2,79 @@
 server:
   port: 46000
 
-
 spring:
-  datasource:
-    url: jdbc:mysql://localhost:45002/project050611yjy_user?useSSL=false&serverTimezone=UTC
-    username: root
-    password: local1234
-    driver-class-name: com.mysql.cj.jdbc.Driver
+  name: user-service
+#  datasource:
+#    driver-class-name: org.apache.shardingsphere.driver.ShardingSphereDriver
+#    url: jdbc:shardingsphere:classpath:shardingsphere.yaml
+#    url: jdbc:mysql://localhost:45002/project050611yjy_user?useSSL=false&serverTimezone=UTC
+#    username: root
+#    password: local1234
+#    driver-class-name: com.mysql.cj.jdbc.Driver
+  shardingsphere:
+    props:
+      sql-show: true
+    mode:
+      type: Standalone
+      repository:
+        type: JDBC
+    datasource:
+      names: ds_0,ds_1
+      ds_0:
+        type: com.zaxxer.hikari.HikariDataSource
+        driver-class-name: com.mysql.jdbc.Driver
+        jdbc-url: jdbc:mysql://localhost:45002/project050611yjy_user_0?serverTimezone=UTC&useSSL=false&useUnicode=true&characterEncoding=UTF-8
+        username: root
+        password: local1234
 
+      ds_1:
+        type: com.zaxxer.hikari.HikariDataSource
+        driver-class-name: com.mysql.jdbc.Driver
+        jdbc-url: jdbc:mysql://localhost:45002/project050611yjy_user_1?serverTimezone=UTC&useSSL=false&useUnicode=true&characterEncoding=UTF-8
+        username: root
+        password: local1234
+
+    rules:
+      sharding:
+        tables:
+          user:
+            actual-data-nodes: ds_$->{0..1}.user_$->{0..2}
+            # 分库策略
+            database-strategy:
+              standard:
+                sharding-column: user_id
+                sharding-algorithm-name: user-db-alg
+            # 分表策略
+            table-strategy:
+              standard:
+                sharding-column: user_id
+                sharding-algorithm-name: user-tb-alg
+            # 主键生成策略
+            key-generate-strategy:
+              column: user_id
+              key-generator-name: snowflake-alg
+        # 分片算法
+        sharding-algorithms:
+          user-db-alg:
+            type: INLINE
+            props:
+              algorithm-expression: ds_${user_id % 2}
+          user-tb-alg:
+            type: INLINE
+            props:
+              algorithm-expression: user_${user_id % 3}
+        # 主键生成算法
+        key-generators:
+          snowflake-alg:
+            type: SNOWFLAKE
+            props:
+              worker-id: 1
 
 mybatis:
   #指定Mybatis的Mapper文件
-  mapper-locations:  classpath:mappers/*.xml
+  mapper-locations:  classpath:mapper/*.xml
   #指定Mybatis的实体目录
-#  type-handlers-package: cn.beforedark.userservice
+#  type-handlers-package: cn.beforedark.userservice.entity
+
 
 
