@@ -17,11 +17,6 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @GetMapping("/test")
-    public String test() {
-        return "User Service";
-    }
-
 
     @PostMapping("/user/register")
     public Boolean userRegister(@RequestBody UserRegisterDto dto) {

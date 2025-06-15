@@ -1,6 +1,6 @@
 package cn.beforedark.permissionservice.service.impl;
 
-import cn.beforedark.permissionservice.entity.UserRoles;
+import cn.beforedark.permissionservice.entity.UserRole;
 import cn.beforedark.permissionservice.mapper.PermissionMapper;
 import cn.beforedark.permissionservice.service.PermissionService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +18,10 @@ public class PermissionServiceImpl implements PermissionService {
 
     @Override
     public void bindDefaultRole(Long userId) {
-        permissionMapper.insert(new UserRoles(userId, 1));
+        if (userId == null){
+            throw new RuntimeException("userId is null");
+        }
+        permissionMapper.insert(new UserRole(userId, 1));
     }
 
 

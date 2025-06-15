@@ -18,6 +18,6 @@ spring:
 
 mybatis:
   #指定Mybatis的Mapper文件
-  mapper-locations:  classpath:mappers/*.xml
+  mapper-locations:  classpath:mapper/*.xml
 
 

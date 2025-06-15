@@ -1,17 +1,17 @@
 package cn.beforedark.permissionservice.entity;
 
 /**
- * @Description: UserRoles 表实体类
+ * @Description: UserRole 表实体类
  * @Author: yjy
  * @Date: 2025/6/13 18:00
  */
-public class UserRoles {
+public class UserRole {
 
     private Long id;
     private Long userId;
     private Integer roleId;
 
-    public UserRoles(Long userId, Integer roleId) {
+    public UserRole(Long userId, Integer roleId) {
         this.userId = userId;
         this.roleId = roleId;
     }

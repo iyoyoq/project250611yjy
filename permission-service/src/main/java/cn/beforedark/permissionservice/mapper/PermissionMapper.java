@@ -1,12 +1,12 @@
 package cn.beforedark.permissionservice.mapper;
 
 
-import cn.beforedark.permissionservice.entity.UserRoles;
+import cn.beforedark.permissionservice.entity.UserRole;
 import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
 public interface PermissionMapper {
 
-    long insert(UserRoles entity);
+    Long insert(UserRole entity);
 
 }
