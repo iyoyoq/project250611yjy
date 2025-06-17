@@ -1,5 +1,7 @@
 package cn.beforedark.userservice.entity;
 
+import java.time.LocalDateTime;
+
 /**
  * @Description: 用户表实体类
  * @Author: yjy
@@ -11,7 +13,7 @@ public class User {
     private String password;
     private String email;
     private String phone;
-    private Long gmtCreate;
+    private LocalDateTime createTime;
 
     public Long getUserId() {
         return userId;
@@ -53,11 +55,11 @@ public class User {
         this.phone = phone;
     }
 
-    public Long getGmtCreate() {
-        return gmtCreate;
+    public LocalDateTime getCreateTime() {
+        return createTime;
     }
 
-    public void setGmtCreate(Long gmtCreate) {
-        this.gmtCreate = gmtCreate;
+    public void setCreateTime(LocalDateTime createTime) {
+        this.createTime = createTime;
     }
 }

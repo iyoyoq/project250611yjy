@@ -80,5 +80,13 @@ mybatis:
   #指定Mybatis的实体目录
 #  type-handlers-package: cn.beforedark.userservice.entity
 
+rocketmq:
+  #namesrv访问地址
+  name-server: vm.server:9876
+  producer:
+    #消息生产者组名
+    group: user-service-producer-group
+#  consumer:
+#    group: group2
 
 
