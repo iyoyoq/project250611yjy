@@ -15,3 +15,15 @@ spring:
 
 mybatis:
   mapper-locations: classpath:mapper/*.xml
+
+
+rocketmq:
+  #namesrv访问地址
+  name-server: vm.server:9876
+  producer:
+    #消息生产者组名
+    group: logging-service-producer-group
+  consumer:
+    group: logging-service-consumer-group
+
+
