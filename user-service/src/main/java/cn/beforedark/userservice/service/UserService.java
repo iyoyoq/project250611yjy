@@ -1,5 +1,6 @@
 package cn.beforedark.userservice.service;
 
+import cn.beforedark.userservice.entity.dto.UserLoginDto;
 import cn.beforedark.userservice.entity.dto.UserRegisterDto;
 
 /**
@@ -9,4 +10,6 @@ import cn.beforedark.userservice.entity.dto.UserRegisterDto;
  */
 public interface UserService {
     boolean register(UserRegisterDto dto);
+
+    boolean login(UserLoginDto dto);
 }

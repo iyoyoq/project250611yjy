@@ -7,7 +7,12 @@
 
 
     <insert id="registerByUsernameAndPassword" useGeneratedKeys="true" keyProperty="userId">
-        insert into user(username, password)
-        values (#{username}, #{password})
+        insert into user(username, password_salt, password)
+        values (#{username}, #{passwordSalt}, #{password})
     </insert>
+
+    <select id="getByUsername" resultType="cn.beforedark.userservice.entity.db.User">
+        select user_id, username, password_salt,password, email, phone, create_time
+        from user where username = #{username}
+    </select>
 </mapper>

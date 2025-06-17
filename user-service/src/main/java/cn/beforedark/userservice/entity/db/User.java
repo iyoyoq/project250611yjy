@@ -1,4 +1,4 @@
-package cn.beforedark.userservice.entity;
+package cn.beforedark.userservice.entity.db;
 
 import java.time.LocalDateTime;
 
@@ -10,10 +10,19 @@ import java.time.LocalDateTime;
 public class User {
     private Long userId;
     private String username;
+    private String passwordSalt;
     private String password;
     private String email;
     private String phone;
     private LocalDateTime createTime;
+
+    public String getPasswordSalt() {
+        return passwordSalt;
+    }
+
+    public void setPasswordSalt(String passwordSalt) {
+        this.passwordSalt = passwordSalt;
+    }
 
     public Long getUserId() {
         return userId;
